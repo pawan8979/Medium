@@ -51,13 +51,6 @@ a:hover{
   gap: 2rem;
 }
 
-.main-nav .toggle-btn{
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-  display:none;
-}
-
 .main-nav button{
   background-color: orange;
   color: #fff;
