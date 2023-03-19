@@ -1,0 +1,24 @@
+.container-logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+.container-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+@media (max-width: 576px) {
+  .container-logout {
+    margin: 20px 70px;
+    text-align: center;
+  }
+  .container-login {
+    margin: 20px 70px;
+    text-align: center;
+  }
+}

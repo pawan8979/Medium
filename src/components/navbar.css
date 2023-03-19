@@ -1,0 +1,188 @@
+.nav {
+  height: 100px;
+  width: 100%;
+  background-color: rgb(115, 215, 255);
+}
+
+.navbar-logout {
+  height: 100px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background-color: rgb(115, 215, 255);
+  justify-content: space-between;
+}
+
+.logout-btn {
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: rgb(255, 157, 111);
+  border: none;
+  border-radius: 5px;
+}
+
+.navbar-login {
+  height: 100px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background-color: rgb(115, 215, 255);
+  justify-content: space-between;
+}
+
+.navbar-login .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-left: 25px;
+}
+
+.navbar-logout .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-left: 25px;
+}
+
+.navbar-login .links {
+  display: flex;
+  gap: 3rem;
+}
+
+.navbar-logout .links {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.navbar-logout .logout-btn {
+  margin-right: 25px;
+}
+
+.navbar-login li:last-child {
+  margin-right: 25px;
+}
+
+.afterLoginNav {
+  width: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.afterLoginNav img {
+  height: 45px;
+  width: 45px;
+  border-radius: 20px;
+}
+
+.navbar-login .toggle-btn {
+  color: #000;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+  margin-right: 25px;
+}
+
+.navbar-logout .toggle-btn {
+  color: #000;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+  margin-right: 25px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #373737;
+  font-size: 1.3rem;
+  padding: 5px 7px;
+  border: 0px solid;
+  border-radius: 5px;
+}
+
+a:hover {
+  background-color: rgb(0, 187, 255);
+  transition: 0.2s;
+}
+
+/* Dropdown Menu */
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 1rem;
+  top: 80px;
+  width: 200px;
+  height: 0px;
+  background-color: rgba(192, 235, 255, 0.68);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: height 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown-menu .a {
+  font-size: 1.5rem;
+}
+
+.dropdown-menu li {
+  padding: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown-menu.open {
+  height: 200px;
+  z-index: 100;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .navbar-login .links {
+    display: none;
+  }
+
+  .navbar-logout .links {
+    display: none;
+  }
+
+  .navbar-login .toggle-btn {
+    display: block;
+  }
+
+  .navbar-logout .toggle-btn {
+    display: block;
+  }
+
+  .dropdown-menu {
+    display: block;
+  }
+  .navbar-login li:last-child {
+    margin-right: 0px;
+  }
+  .navbar-logout li:last-child {
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 576px) {
+  .dropdown-menu {
+    left: 2rem;
+    width: unset;
+  }
+  .navbar-login li:last-child {
+    margin-right: 0px;
+  }
+  .navbar-logout li:last-child {
+    margin-right: 0px;
+  }
+}

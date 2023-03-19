@@ -1,0 +1,40 @@
+.login-mod {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 524px;
+}
+
+.login-mod button {
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(255, 151, 91);
+}
+
+.login-mod button:hover {
+  padding: 12px 17px;
+  font-size: 19.5px;
+  background-color: rgb(255, 167, 116);
+  transition: 0.1s;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .login-mod {
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .dropdown-menu {
+    left: 2rem;
+    width: unset;
+  }
+  .navbar li:last-child {
+    margin-right: 0px;
+  }
+}

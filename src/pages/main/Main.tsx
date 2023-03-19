@@ -1,32 +1,43 @@
-import {getDocs, collection} from "firebase/firestore";
-import {useState, useEffect} from "react";
-import {db} from "../../config/Firebase";
-import {Post} from "./Post";
+import "../styles/main.css";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../../config/Firebase";
+import { useEffect, useState } from "react";
+import Post from "./Post";
 
-export interface Post{
-    id: string;
-    userId:string;
-    title:string;
-    username:string;
-    description: string;
+
+export interface Post {
+  id: string;
+  userId: string;
+  title: string;
+  username: string;
+  description: string;
 }
 
-export const Main= ()=>{
-    const [postsList, setPostsList]= useState<Post[] | null>(null);
-    const postsRef= collection(db, "posts");
-    
-    const getPosts= async ()=>{
-        const data= await getDocs(postsRef);
-        setPostsList(data.docs.map((doc)=> ({...doc.data(), id: doc.id})) as Post[]);
-    };
+export const Main = () => {
+  const postRef = collection(db, "posts");
 
-    useEffect(()=>{
-        getPosts();
-    }, []);
+  const [postsList, setPostsList] = useState<Post[] | null>(null);
 
-    return(
-    <div> 
-        {postsList?.map((post)=> <Post post= {post}/>)}
-    </div>
+  const getPosts = async () => {
+    const data = await getDocs(postRef);
+    setPostsList(
+      data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Post[]
     );
+  };
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+  return (
+    <>
+      <div className={postsList ? "container-login" : "container-logout"}>
+        <h1>Welcome to Home Page 🙋‍♂️</h1>
+      </div>
+      <p>
+        {postsList?.map((post) => (
+          <Post post={post} />
+        ))}
+      </p>
+    </>
+  );
 };

@@ -1,37 +1,91 @@
-import {Link} from "react-router-dom";
-import {auth} from '../config/Firebase';
-import {useAuthState} from 'react-firebase-hooks/auth';
-import {signOut} from "firebase/auth";
+import { Link } from "react-router-dom";
+import { auth } from "../config/Firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import "./navbar.css";
 
-export const Navbar= ()=>{
-    const [user]= useAuthState(auth);
+export const Navbar = () => {
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+  const signUserOut = async () => {
+    await signOut(auth);
+    navigate("/login");
+  };
 
-    const signUserOut= async() =>{
-        await signOut(auth);
-    };
+  const triggerToggle = () => {
+    document.querySelector(".dropdown-menu")?.classList.toggle("open");
 
-    return(
-        <div className= "navbar">
-            <nav className="main-nav">
-                <div className="logo">PostHub</div>
-                <div className="links">
-                    <Link to="/">Home</Link>
-                    <div>
-                    {!user ? (<Link to="/login">Login</Link>):<Link to= "/createpost">Create Post</Link>
-                    }
-                    </div>
-            
-                </div>
-                <div className= "user">
-                    {user && (
-                        <>
-                        <p>{user?.displayName}</p>
-                        <img src={user?.photoURL || ""} width="20" height="20"/>
-                        <button onClick={signUserOut}>Log Out</button>
-                        </>
-                    )}
-                </div>
-            </nav>
+    const isOpen = document
+      .querySelector(".dropdown-menu")
+      ?.classList.contains("open");
+  };
+  return (
+    <div className="nav">
+      <nav className={user ? "navbar-logout" : "navbar-login"}>
+        <div className="logo">PostHub</div>
+        <ul className="links">
+          <li>
+            <Link to="/" className="a">
+              Home
+            </Link>
+          </li>
+          {user ? (
+            <li>
+              <Link to="/createpost" className="a">
+                Create Post
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link to="/login" className="a">
+                Login
+              </Link>
+            </li>
+          )}
+          {user && (
+            <div className="afterLoginNav">
+              <img src={user?.photoURL || ""} alt="profile_picture" />
+              <button className="logout-btn" onClick={signUserOut}>
+                Log out
+              </button>
+            </div>
+          )}
+        </ul>
+        <div className="toggle-btn" onClick={triggerToggle}>
+          <i className="fa-solid fa-bars"></i>
         </div>
-    );
+        <div className="dropdown-menu">
+          <li>
+            <Link to="/" className="a">
+              Home
+            </Link>
+          </li>
+          {user ? (
+            <>
+              <li>
+                <Link to="/createpost" className="a">
+                  Create Post
+                </Link>
+              </li>
+              <li>
+                <div className="afterLoginNav">
+                  <img src={user?.photoURL || ""} alt="profile_picture" />
+                  <button className="logout-btn" onClick={signUserOut}>
+                    Log out
+                  </button>
+                </div>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link to="/login" className="a">
+                Login
+              </Link>
+            </li>
+          )}
+        </div>
+      </nav>
+    </div>
+  );
 };
